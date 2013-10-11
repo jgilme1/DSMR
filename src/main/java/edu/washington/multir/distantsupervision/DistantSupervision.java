@@ -35,7 +35,10 @@ public class DistantSupervision {
 
 	public static void main(String[] args) throws IOException, InterruptedException, SQLException{
 		
-		useOldTable(args);
+		
+		
+		
+		//useOldTable(args);
 		//createNewTable(args);
 		//createNewTableWithSpecifiedRelations(args);
 //		String pathToEntityMap = args[0];
@@ -51,55 +54,55 @@ public class DistantSupervision {
 //		System.out.println("KB Loaded in "+ (endTime - startTime) + "milliseconds");
 	}
 	
-	public static void useOldTable(String[] args) throws SQLException{
-		String pathToEntityMap = args[0];
-		String pathToKB = args[1];
-		
-		KB kb =KB.loadKBFromDerby("KB");
-		long startTime = System.currentTimeMillis();
-		kb.printRelsForEntities("/m/07mdnv","/m/09c7w0");
-		kb.printRelsForEntities("/m/077g53","/m/0f8l9c");
-	    long endTime = System.currentTimeMillis();
-		System.out.println("Query completed in"+ (endTime - startTime) + "milliseconds");
-
-
-		kb.cleanUp();
-	}
-	
-	public static void createNewTable(String[] args) throws SQLException{
-		String pathToEntityMap = args[0];
-		String pathToKB = args[1];
-		
-		long startTime = System.currentTimeMillis();
-		KB kb = KB.loadKBFromTsv("KB", new File(pathToKB));
-		//KnowledgeBase kb = KnowledgeBase.buildKnowledgeBaseFromtsvFiles(new File(pathToEntityMap),new File(pathToKB));
-	    long endTime = System.currentTimeMillis();
-		
-	    kb.cleanUp();
-		System.out.println("KB Loaded in "+ (endTime - startTime) + "milliseconds");
-	}
-	
-	public static void createNewTableWithSpecifiedRelations(String[] args) throws SQLException, IOException{
-		String pathToEntityMap = args[0];
-		String pathToKB = args[1];
-		
-		Set<String> targetRelations = new HashSet<String>();
-		File targetRelationFile = new File("targetRelations.txt");
-		String targetRelationsString = FileUtils.readFileToString(targetRelationFile);
-		String[] targetRelationLines = targetRelationsString.split("\n");
-		for(String line : targetRelationLines){
-			targetRelations.add(line.split("\\s+")[1]);
-		}
-				
-		long startTime = System.currentTimeMillis();
-		KB kb = KB.loadKBFromTsvWithRelationFilter("KB", new File(pathToKB),targetRelations);
-		//KnowledgeBase kb = KnowledgeBase.buildKnowledgeBaseFromtsvFiles(new File(pathToEntityMap),new File(pathToKB));
-	    long endTime = System.currentTimeMillis();
-		
-	    kb.cleanUp();
-		System.out.println("KB Loaded in "+ (endTime - startTime) + "milliseconds");
-		
-	}
+//	public static void useOldTable(String[] args) throws SQLException{
+//		String pathToEntityMap = args[0];
+//		String pathToKB = args[1];
+//		
+//		KB kb =KB.loadKBFromDerby("KB");
+//		long startTime = System.currentTimeMillis();
+//		kb.printRelsForEntities("/m/07mdnv","/m/09c7w0");
+//		kb.printRelsForEntities("/m/077g53","/m/0f8l9c");
+//	    long endTime = System.currentTimeMillis();
+//		System.out.println("Query completed in"+ (endTime - startTime) + "milliseconds");
+//
+//
+//		kb.cleanUp();
+//	}
+//	
+//	public static void createNewTable(String[] args) throws SQLException{
+//		String pathToEntityMap = args[0];
+//		String pathToKB = args[1];
+//		
+//		long startTime = System.currentTimeMillis();
+//		KB kb = KB.loadKBFromTsv("KB", new File(pathToKB));
+//		//KnowledgeBase kb = KnowledgeBase.buildKnowledgeBaseFromtsvFiles(new File(pathToEntityMap),new File(pathToKB));
+//	    long endTime = System.currentTimeMillis();
+//		
+//	    kb.cleanUp();
+//		System.out.println("KB Loaded in "+ (endTime - startTime) + "milliseconds");
+//	}
+//	
+//	public static void createNewTableWithSpecifiedRelations(String[] args) throws SQLException, IOException{
+//		String pathToEntityMap = args[0];
+//		String pathToKB = args[1];
+//		
+//		Set<String> targetRelations = new HashSet<String>();
+//		File targetRelationFile = new File("targetRelations.txt");
+//		String targetRelationsString = FileUtils.readFileToString(targetRelationFile);
+//		String[] targetRelationLines = targetRelationsString.split("\n");
+//		for(String line : targetRelationLines){
+//			targetRelations.add(line.split("\\s+")[1]);
+//		}
+//				
+//		long startTime = System.currentTimeMillis();
+//		KB kb = KB.loadKBFromTsvWithRelationFilter("KB", new File(pathToKB),targetRelations);
+//		//KnowledgeBase kb = KnowledgeBase.buildKnowledgeBaseFromtsvFiles(new File(pathToEntityMap),new File(pathToKB));
+//	    long endTime = System.currentTimeMillis();
+//		
+//	    kb.cleanUp();
+//		System.out.println("KB Loaded in "+ (endTime - startTime) + "milliseconds");
+//		
+//	}
 	
 	
 }
